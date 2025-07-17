@@ -1,12 +1,18 @@
-from airflow.decorators import dag, task
+from airflow import DAG
+from airflow.operators.python import PythonOperator
 from datetime import datetime
 
-@dag(start_date=datetime(2024, 1, 1), schedule_interval="@daily", catchup=False)
-def stock_pipeline():
-    @task
-    def start():
-        print("Pipeline started")
+def dummy_task():
+    print("This is a placeholder")
 
-    start()
+with DAG(
+    dag_id="stock_market_pipeline",
+    schedule_interval="@daily",
+    start_date=datetime(2024, 1, 1),
+    catchup=False
+) as dag:
 
-stock_pipeline()
+    task1 = PythonOperator(
+        task_id="dummy",
+        python_callable=dummy_task
+    )
