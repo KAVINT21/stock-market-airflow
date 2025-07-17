@@ -1,2 +1,7 @@
-project:
-    name: stock-market-airflow
+project-id: 
+deployment:
+  airflow-version: 3.0.3
+  runtime-version: 3.0.5
+  environment: dev
+  region: eastus2
+  cloud-provider: azure
